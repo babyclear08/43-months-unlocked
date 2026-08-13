@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>LOVE.exe — 43 Months Unlocked ❤️</title>
+<meta name="description" content="A little app made just for you." />
+<meta name="theme-color" content="#0b0714" />
+
+<!-- Fonts: elegant serif for display, clean sans for body, warm serif for the letter -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Poppins:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- Ambient background layer: shared across whole app -->
+<div class="bg-layer" aria-hidden="true">
+  <div class="bg-gradient"></div>
+  <div class="bg-glow bg-glow--one"></div>
+  <div class="bg-glow bg-glow--two"></div>
+  <canvas id="particle-canvas"></canvas>
+  <div id="floating-hearts" class="floating-hearts"></div>
+</div>
+
+<!-- Persistent chapter progress (hidden on lock + loading screens) -->
+<div id="progress-indicator" class="progress-indicator hidden" aria-hidden="true">
+  <span id="progress-text">Chapter 01 / 08</span>
+  <div class="progress-track"><div id="progress-fill" class="progress-fill"></div></div>
+</div>
+
+<!-- Persistent back button -->
+<button id="back-btn" class="back-btn hidden" aria-label="Go back">←</button>
+
+<!-- Persistent music player -->
+<div id="music-player" class="music-player hidden">
+  <button id="music-toggle" class="music-toggle" aria-label="Play our song">
+    <span class="music-icon">🎵</span>
+  </button>
+</div>
+
+<main id="app">
+
+  <!-- ============ SCREEN 0 — SECRET LOGIN ============ -->
+  <section id="screen-lock" class="screen screen--active" data-screen="lock">
+    <div class="lock-content">
+      <p class="eyebrow fade-in">SYSTEM ACCESS</p>
+      <h1 class="lock-title fade-in delay-1">Hey, Love. <span class="heart-inline">❤️</span></h1>
+      <p class="lock-sub fade-in delay-2">I made something for you.</p>
+      <p class="lock-note fade-in delay-3">But apparently, this relationship has security protocols.</p>
+
+      <div class="pin-block fade-in delay-4">
+        <p class="pin-label">ENTER THE SECRET CODE</p>
+        <div id="pin-boxes" class="pin-boxes">
+          <div class="pin-box" data-index="0"></div>
+          <div class="pin-box" data-index="1"></div>
+          <div class="pin-box" data-index="2"></div>
+          <div class="pin-box" data-index="3"></div>
+        </div>
+        <p id="pin-message" class="pin-message" aria-live="polite">&nbsp;</p>
+
+        <div class="keypad" id="keypad">
+          <button class="key" data-key="1">1</button>
+          <button class="key" data-key="2">2</button>
+          <button class="key" data-key="3">3</button>
+          <button class="key" data-key="4">4</button>
+          <button class="key" data-key="5">5</button>
+          <button class="key" data-key="6">6</button>
+          <button class="key" data-key="7">7</button>
+          <button class="key" data-key="8">8</button>
+          <button class="key" data-key="9">9</button>
+          <button class="key key--ghost" data-key="clear">clear</button>
+          <button class="key" data-key="0">0</button>
+          <button class="key key--ghost" data-key="back">⌫</button>
+        </div>
+      </div>
+    </div>
+    <div class="unlock-flash" id="unlock-flash" aria-hidden="true">
+      <div class="unlock-heart">❤</div>
+      <p class="unlock-text">ACCESS GRANTED ❤️</p>
+      <p class="unlock-sub">Welcome back, Love.</p>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN 1 — LOADING ============ -->
+  <section id="screen-loading" class="screen" data-screen="loading">
+    <div class="loading-content">
+      <p class="loading-title">Loading our story...</p>
+      <p id="loading-line" class="loading-line">Loading memories...</p>
+      <div class="loading-bar-track">
+        <div id="loading-bar-fill" class="loading-bar-fill"></div>
+      </div>
+      <p id="loading-percent" class="loading-percent">0%</p>
+      <div id="loading-complete" class="loading-complete hidden">
+        <p class="loading-complete-title">100% COMPLETE ❤️</p>
+        <p class="loading-complete-sub">Yep. Still you.</p>
+        <button id="open-story-btn" class="btn btn--primary">OPEN OUR STORY →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN 2 — OUR BEGINNING ============ -->
+  <section id="screen-1" class="screen story-screen" data-screen="1" data-chapter="1">
+    <div class="screen-inner">
+      <p class="eyebrow">CHAPTER ONE</p>
+      <h2 class="section-title">Where It All Started</h2>
+      <p id="anniversary-date" class="big-date">January 14, 2023</p>
+      <p class="section-sub">The day we officially became us.</p>
+
+      <div class="timeline" id="timeline">
+        <div class="timeline-line"><div class="timeline-line-fill" id="timeline-line-fill"></div></div>
+        <div class="timeline-item" data-step="0">
+          <div class="timeline-dot"></div>
+          <p class="timeline-label">Day 1</p>
+        </div>
+        <div class="timeline-item" data-step="1">
+          <div class="timeline-dot"></div>
+          <p class="timeline-label">Month 1</p>
+        </div>
+        <div class="timeline-item" data-step="2">
+          <div class="timeline-dot"></div>
+          <p class="timeline-label">1 Year</p>
+        </div>
+        <div class="timeline-item" data-step="3">
+          <div class="timeline-dot"></div>
+          <p class="timeline-label">2 Years</p>
+        </div>
+        <div class="timeline-item" data-step="4">
+          <div class="timeline-dot"></div>
+          <p class="timeline-label">3 Years</p>
+        </div>
+        <div class="timeline-item timeline-item--final" data-step="5">
+          <div class="timeline-dot timeline-dot--final"></div>
+          <p class="timeline-label timeline-label--final">43 MONTHS ❤️</p>
+        </div>
+      </div>
+
+      <p class="emotional-line">And somehow, I still haven't gotten tired of you.</p>
+      <p class="witty-line">Actually... I think I'm getting more attached. Send help. 😂</p>
+
+      <button class="btn btn--primary next-btn" data-next="2">KEEP GOING, LOVE →</button>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN 3 — 43 MONTHS OF US ============ -->
+  <section id="screen-2" class="screen story-screen" data-screen="2" data-chapter="2">
+    <div class="screen-inner">
+      <p class="eyebrow">CHAPTER TWO</p>
+      <div class="big-number-wrap">
+        <div id="big-number" class="big-number">0</div>
+        <p class="big-number-label">MONTHS</p>
+      </div>
+      <p class="duration-sub">3 YEARS • 7 MONTHS • COUNTING</p>
+
+      <div class="stat-cards" id="stat-cards">
+        <div class="stat-card"><span class="stat-emoji">❤️</span><span>43 months of love</span></div>
+        <div class="stat-card"><span class="stat-emoji">😂</span><span>Countless laughs</span></div>
+        <div class="stat-card"><span class="stat-emoji">🥹</span><span>Too many soft moments</span></div>
+        <div class="stat-card"><span class="stat-emoji">😤</span><span>A few tampuhan moments</span></div>
+        <div class="stat-card"><span class="stat-emoji">📸</span><span>So many memories</span></div>
+        <div class="stat-card"><span class="stat-emoji">♾️</span><span>Still choosing you</span></div>
+      </div>
+
+      <p class="exact-duration" id="exact-duration"></p>
+
+      <button class="btn btn--primary next-btn" data-next="3">CONTINUE →</button>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN 4 — LOVE AUDIT ============ -->
+  <section id="screen-3" class="screen story-screen" data-screen="3" data-chapter="3">
+    <div class="screen-inner">
+      <p class="eyebrow">CHAPTER THREE</p>
+      <h2 class="section-title">Official Relationship Audit</h2>
+      <p class="section-sub">After 43 months of extensive research...</p>
+
+      <div class="audit-list" id="audit-list">
+        <div class="audit-row" data-value="100">
+          <p class="audit-label">Love for Jezel</p>
+          <div class="audit-track"><div class="audit-fill"></div></div>
+          <p class="audit-value">100%</p>
+        </div>
+        <div class="audit-row" data-value="95">
+          <p class="audit-label">Patience</p>
+          <div class="audit-track"><div class="audit-fill"></div></div>
+          <p class="audit-value">95%</p>
+        </div>
+        <div class="audit-row" data-value="20">
+          <p class="audit-label">Ability to say "okay" during tampuhan</p>
+          <div class="audit-track"><div class="audit-fill"></div></div>
+          <p class="audit-value">20%</p>
+        </div>
+        <div class="audit-row" data-value="100">
+          <p class="audit-label">Thinking about Jezel</p>
+          <div class="audit-track"><div class="audit-fill"></div></div>
+          <p class="audit-value">100%</p>
+        </div>
+        <div class="audit-row audit-row--error" data-value="100">
+          <p class="audit-label">Missing Jezel</p>
+          <div class="audit-track"><div class="audit-fill audit-fill--error"></div></div>
+          <p class="audit-value">ERROR — TOO HIGH</p>
+        </div>
+        <div class="audit-row" data-value="100">
+          <p class="audit-label">Willingness to annoy Jezel forever</p>
+          <div class="audit-track"><div class="audit-fill"></div></div>
+          <p class="audit-value">100%</p>
+        </div>
+        <div class="audit-row audit-row--refuse" data-value="0">
+          <p class="audit-label">Chance of leaving</p>
+          <div class="audit-track"><div class="audit-fill audit-fill--refuse"></div></div>
+          <p class="audit-value">0% — SYSTEM REFUSES TO ACCEPT THIS OPTION</p>
+        </div>
+      </div>
+
+      <div class="audit-result">
+        <p class="audit-result-title">FINAL AUDIT RESULT:</p>
+        <p class="audit-result-text">"You're stuck with me." ❤️</p>
+      </div>
+
+      <button class="btn btn--primary next-btn" data-next="4">CONTINUE →</button>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN 5 — THINGS I LOVE ABOUT YOU ============ -->
+  <section id="screen-4" class="screen story-screen" data-screen="4" data-chapter="4">
+    <div class="screen-inner">
+      <p class="eyebrow">CHAPTER FOUR</p>
+      <h2 class="section-title">A Few Things I Love About You</h2>
+      <p class="section-sub">Tap each card to reveal.</p>
+
+      <div class="love-cards" id="love-cards">
+        <!-- populated by JS from CONFIG.loveList -->
+      </div>
+
+      <button class="btn btn--primary next-btn" data-next="5">CONTINUE →</button>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN 6 — MEMORY VAULT ============ -->
+  <section id="screen-5" class="screen story-screen" data-screen="5" data-chapter="5">
+    <div class="screen-inner">
+      <p class="eyebrow">CHAPTER FIVE</p>
+      <h2 class="section-title">MEMORY VAULT 🔐</h2>
+      <p class="section-sub">A few locked files, just for you.</p>
+
+      <div class="vault-grid" id="vault-grid">
+        <button class="vault-file" data-folder="first-chapter">
+          <span class="vault-icon">📁</span><span>FIRST CHAPTER</span>
+        </button>
+        <button class="vault-file" data-folder="favorite-moments">
+          <span class="vault-icon">📁</span><span>FAVORITE MOMENTS</span>
+        </button>
+        <button class="vault-file" data-folder="random-chaos">
+          <span class="vault-icon">📁</span><span>RANDOM CHAOS</span>
+        </button>
+        <button class="vault-file" data-folder="our-little-world">
+          <span class="vault-icon">📁</span><span>OUR LITTLE WORLD</span>
+        </button>
+        <button class="vault-file" data-folder="forever-file">
+          <span class="vault-icon">📁</span><span>FOREVER FILE</span>
+        </button>
+      </div>
+
+      <button class="btn btn--primary next-btn" data-next="6">CONTINUE →</button>
+    </div>
+
+    <!-- Fullscreen gallery viewer -->
+    <div id="gallery-viewer" class="gallery-viewer hidden">
+      <button id="gallery-close" class="gallery-close" aria-label="Close gallery">✕</button>
+      <div id="gallery-heart-burst" class="gallery-heart-burst"></div>
+      <div class="gallery-stage">
+        <button id="gallery-prev" class="gallery-nav gallery-nav--prev" aria-label="Previous photo">‹</button>
+        <div class="gallery-image-wrap">
+          <img id="gallery-image" class="gallery-image" src="" alt="" />
+          <div id="gallery-placeholder" class="gallery-placeholder hidden">
+            <p class="gallery-placeholder-icon">🖼️</p>
+            <p id="gallery-placeholder-text" class="gallery-placeholder-text"></p>
+          </div>
+        </div>
+        <button id="gallery-next" class="gallery-nav gallery-nav--next" aria-label="Next photo">›</button>
+      </div>
+      <p id="gallery-caption" class="gallery-caption"></p>
+      <p id="gallery-index" class="gallery-index"></p>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN 7 — CHOOSE WISELY GAME ============ -->
+  <section id="screen-6" class="screen story-screen" data-screen="6" data-chapter="6">
+    <div class="screen-inner">
+      <p class="eyebrow">CHAPTER SIX</p>
+      <h2 class="section-title">One Very Important Question...</h2>
+      <p class="game-question">After 43 months, would you still choose me?</p>
+
+      <div class="game-area" id="game-area">
+        <button id="yes-btn" class="btn btn--yes">YES ❤️</button>
+        <button id="no-btn" class="btn btn--no">NO 😈</button>
+      </div>
+      <p id="game-message" class="game-message" aria-live="polite">&nbsp;</p>
+    </div>
+
+    <div class="celebration hidden" id="celebration">
+      <div id="confetti-container" class="confetti-container" aria-hidden="true"></div>
+      <p class="celebration-text">Correct answer. 😌❤️</p>
+      <p class="celebration-sub">I knew you had excellent taste.</p>
+      <button class="btn btn--primary next-btn" data-next="7">CONTINUE →</button>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN 8 — THE LOVE LETTER ============ -->
+  <section id="screen-7" class="screen story-screen screen--quiet" data-screen="7" data-chapter="7">
+    <div class="screen-inner">
+      <p class="eyebrow">CHAPTER SEVEN</p>
+      <h2 class="section-title letter-heading">Okay... jokes aside.</h2>
+      <div class="letter-paper">
+        <p id="letter-text" class="letter-text"></p><span id="letter-cursor" class="letter-cursor">|</span>
+      </div>
+      <button id="letter-next-btn" class="btn btn--primary next-btn hidden" data-next="8">I HAVE ONE MORE THING TO SHOW YOU...</button>
+      <button id="letter-skip-btn" class="skip-btn">skip typing</button>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN 9 — FINAL SURPRISE ============ -->
+  <section id="screen-8" class="screen story-screen screen--final" data-screen="8" data-chapter="8">
+    <div class="screen-inner final-inner">
+      <p id="final-check" class="final-check">FINAL SYSTEM CHECK...</p>
+      <div id="final-status-block" class="final-status-block hidden">
+        <p class="final-status-label">Relationship Status</p>
+        <p class="final-status-loading">Loading...</p>
+        <div class="final-bar-track"><div id="final-bar-fill" class="final-bar-fill"></div></div>
+      </div>
+      <div id="final-result" class="final-result hidden">
+        <p class="final-result-text">STILL IN LOVE WITH JEZEL ❤️</p>
+      </div>
+      <div id="final-months" class="final-months hidden">
+        <p>43 months later...</p>
+      </div>
+      <h2 id="final-choose" class="final-choose hidden">I'd still choose you.</h2>
+      <p id="final-happy" class="final-happy hidden">Happy 43rd Monthsary, Love.</p>
+
+      <div id="final-message" class="final-message hidden">
+        <p>Thank you for being my favorite person, my favorite notification, my favorite conversation, and occasionally...</p>
+        <p class="final-message-pause">...my favorite headache. 😂❤️</p>
+        <p class="final-i-love-you">I love you, Jezel.</p>
+      </div>
+
+      <button id="song-btn" class="btn btn--song hidden">PLAY OUR SONG 🎵</button>
+    </div>
+  </section>
+
+</main>
+
+<audio id="our-song-audio" preload="none" loop></audio>
+
+<script src="script.js"></script>
+</body>
+</html>
