@@ -14,7 +14,7 @@ const CONFIG = {
 
   // Local audio file. If it exists at this path, the music button will
   // play it. Otherwise, set SONG_URL below to a hosted audio link.
-  localSong: "https://youtu.be/LjhCEhWiKXk",
+  SONG_URL: "https://youtu.be/LjhCEhWiKXk",
 
   // Optional external song URL (used only if localSong fails to load).
   // Example: "https://example.com/our-song.mp3"
