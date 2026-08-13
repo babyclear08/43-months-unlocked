@@ -18,7 +18,7 @@ const CONFIG = {
 
   // Optional external song URL (used only if localSong fails to load).
   // Example: "https://example.com/our-song.mp3"
-  songUrl: "",
+  songUrl: "https://youtu.be/LjhCEhWiKXk",
 
   // Memory Vault folders. Add as many image filenames as you like to each
   // array — just drop matching files into the /images folder using these
