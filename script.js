@@ -33,7 +33,7 @@ const CONFIG = {
     "first-chapter": {
       title: "First Chapter",
       photos: [
-        { src: "images/photo1.jpg", caption: "Where it all began." },
+        { src: "images/photo1.jpg", caption: "Anywhere with you." },
         { src: "images/photo2.jpg", caption: "Still figuring each other out." }
       ]
     },
@@ -76,7 +76,7 @@ const CONFIG = {
     "Your laugh.",
     "Even your kulit side.",
     "How you can make me miss you even when we just talked.",
-    "Simply... you."
+    "Simply you...Supladita31#."
   ],
 
   // Final card in the "things I love" list — always shown last.
@@ -92,13 +92,13 @@ Happy 43rd monthsary. Three years and seven months.
 
 Sometimes I still can't believe how much life we've already shared together.
 
-We've had happy days, stressful days, random days, kulit days, tampuhan days, and moments where we probably wondered why we chose each other in the first place. 😂
+May ara happy days, stressful days, random days, supladita days, tampuhan days, and moments where we probably wondered why we chose each other in the first place. 😂
 
 But through all of it, you're still the person I want beside me.
 
 I don't need every day to be perfect. I just want more days with you.
 
-More laughs. More adventures. More memories. More random conversations. More pictures. More food trips. More kulit. More moments where we look at each other and realize, "Yep... we're still us."
+More kadlaw. More travel. More memories. More random conversations. More pictures. More food trips. More sinuplada. More moments where we look at each other and realize, "Yep... we're still us."
 
 Thank you for staying. Thank you for loving me. Thank you for being my Love.
 
