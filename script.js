@@ -23,7 +23,7 @@ const CONFIG = {
   // Optional YouTube fallback — used only if there's no local mp3 and no
   // songUrl. Just the video ID (the part after youtu.be/ or ?v=).
   // Example: "https://youtu.be/LjhCEhWiKXk" -> youtubeId: "LjhCEhWiKXk"
-  youtubeId: "LjhCEhWiKXk",
+  youtubeId: "",
   youtubeTitle: "Just the Way You Are — Bruno Mars",
 
   // Memory Vault folders. Add as many image filenames as you like to each
@@ -70,13 +70,13 @@ const CONFIG = {
   // "A few things I love about you" — edit freely, any length list works.
   loveList: [
     "Your smile.",
-    "The way you make ordinary days feel special.",
+    "The way you look at me.",
     "Your little habits that somehow became my favorite things.",
     "The way you care.",
     "Your laugh.",
-    "Even your kulit side.",
+    "Even your supladita side.",
     "How you can make me miss you even when we just talked.",
-    "Simply... you."
+    "Simply you... Supladita31#."
   ],
 
   // Final card in the "things I love" list — always shown last.
@@ -92,13 +92,13 @@ Happy 43rd monthsary. Three years and seven months.
 
 Sometimes I still can't believe how much life we've already shared together.
 
-We've had happy days, stressful days, random days, kulit days, tampuhan days, and moments where we probably wondered why we chose each other in the first place. 😂
+May ara happy days, stressful days, random days, kulit days, sunggod days, and moments where we probably wondered why we chose each other in the first place. 😂
 
 But through all of it, you're still the person I want beside me.
 
 I don't need every day to be perfect. I just want more days with you.
 
-More laughs. More adventures. More memories. More random conversations. More pictures. More food trips. More kulit. More moments where we look at each other and realize, "Yep... we're still us."
+More kadlaw. More travel. More memories. More random conversations. More pictures. More food trips. More kulit. More moments where we look at each other and realize, "Yep... we're still us."
 
 Thank you for staying. Thank you for loving me. Thank you for being my Love.
 
